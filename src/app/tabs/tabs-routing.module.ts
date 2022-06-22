@@ -20,6 +20,10 @@ const routes: Routes = [
         loadChildren: () => import('../find-recipes/find-recipes.module').then(m => m.FindRecipesPageModule)
       },
       {
+        path: 'profile',
+        loadChildren: () => import('../profile/profile.module').then( m => m.ProfilePageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/recipes',
         pathMatch: 'full'

@@ -15,7 +15,6 @@ import { FindRecipesPageRoutingModule } from './find-recipes-routing.module';
     FormsModule,
     RouterModule.forChild([{ path: '', component: FindRecipesPage }]),
     FindRecipesPageRoutingModule,
-    IonicModule,
     FlexLayoutModule
   ],
   declarations: [FindRecipesPage]

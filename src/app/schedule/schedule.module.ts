@@ -14,7 +14,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     CommonModule,
     FormsModule,
     SchedulePageRoutingModule,
-    IonicModule,
     FlexLayoutModule
   ],
   declarations: [SchedulePage]

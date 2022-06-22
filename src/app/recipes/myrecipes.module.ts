@@ -13,7 +13,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     CommonModule,
     FormsModule,
     MyRecipesPageRoutingModule,
-    IonicModule,
     FlexLayoutModule
   ],
   declarations: [MyRecipesPage]

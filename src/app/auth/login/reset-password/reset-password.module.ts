@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { LoginPageRoutingModule } from './login-routing.module';
+import { ResetPasswordPageRoutingModule } from './reset-password-routing.module';
 
-import { LoginPage } from './login.page';
+import { ResetPasswordPage } from './reset-password.page';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
@@ -14,10 +14,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     CommonModule,
     FormsModule,
     IonicModule,
-    LoginPageRoutingModule,
-    FlexLayoutModule,
-    ReactiveFormsModule
+    ResetPasswordPageRoutingModule,
+    ReactiveFormsModule,
+    FlexLayoutModule
   ],
-  declarations: [LoginPage]
+  declarations: [ResetPasswordPage]
 })
-export class LoginPageModule {}
+export class ResetPasswordPageModule {}

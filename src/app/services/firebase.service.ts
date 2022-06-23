@@ -11,7 +11,8 @@ export class FirebaseService {
     private fb: AngularFirestore,
     private userService: UserService
   ) { }
-  fetchUserProfile(id: string) {
-    return this.fb.collection('Users').doc(id).valueChanges({ idField: 'id' });
+
+  createUserProfile(id, userObj: any) {
+    return this.fb.collection('Users').doc(id).set(userObj);
   }
 }

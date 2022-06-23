@@ -1,9 +1,46 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
+<ion-content [fullscreen]="true">
+  <div fxFlexFill fxLayout="column" fxLayoutGap="24px">
+  <div fxLayout="row" class="header-text" fxLayoutAlign="center start">
+    <h2>MyRecipes</h2>
+  </div>
+  <div fxFlex fxLayout="row" class="form-container" fxLayoutAlign="center">
+    <form fxFlex fxLayout="column" fxLayoutGap="24px" [formGroup]="form">
+      <ion-item class="inputs">
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input
+          inputmode="email"
+          type="email"
+          placeholder="yourname@email.com"
+          [autofocus]="true"
+          formControlName="email"
+        ></ion-input>
+      </ion-item>
+      <ion-item class="inputs">
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input
+          inputmode="text"
+          type="password"
+          placeholder="*********"
+          [autofocus]="true"
+          formControlName="password"
+        ></ion-input>
+      </ion-item>
+      <ion-button
+        class="button"
+        expand="block"
+        fill="solid"
+        color="primary"
+        [disabled]="form.invalid"
+        (click)="login()"
+        >Log In</ion-button
+      >
+      <div fxFlex fxLayout="row" fxLayoutAlign="center end">
+        <p>Forgot Password? <a routerLink="/login/reset-password">Reset Here</a></p>
+      </div>
+    </form>
+  </div>
+  <div fxFlex fxLayout="row" fxLayoutAlign="center end">
+    <p>No account? No problem! <a routerLink="/signup">Sign Up Here</a></p>
+  </div>
+</div>
 </ion-content>

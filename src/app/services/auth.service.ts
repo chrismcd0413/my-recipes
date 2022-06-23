@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { UserService } from './user.service';
@@ -9,7 +9,7 @@ import { FirebaseService } from './firebase.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements OnDestroy {
   private isAuthenticated = false;
   private subs: Subscription[] = [];
   private firstRun = true;
@@ -21,6 +21,10 @@ export class AuthService {
     private fb: FirebaseService
   ) { }
 
+  ngOnDestroy(): void {
+      this.subs.forEach(x => x.unsubscribe());
+  }
+
   login(email: string, password: string) {
     this.auth.signInWithEmailAndPassword(email, password)
     .catch((error) =>
@@ -30,6 +34,10 @@ export class AuthService {
 
   logout() {
     this.auth.signOut();
+  }
+
+  sendPasswordReset(email) {
+    return this.auth.sendPasswordResetEmail(email);
   }
 
   initAuthListener() {
@@ -47,20 +55,24 @@ export class AuthService {
   }
 
   setUserData(user) {
-    this.fb.fetchUserProfile(user.uid).subscribe((profile) => {
-      this.userService.setUser(profile);
+      this.userService.setUser(user);
       if (this.firstRun) {
         this.router.navigate(['/']);
         this.firstRun = false;
       }
-    });
   }
 
   isAuth() {
     return this.isAuthenticated;
   }
 
-  createAlert(_header: string, _message: string) {
+  createNewAccount(name: string, _email: string, password: string) {
+    this.auth.createUserWithEmailAndPassword(_email, password)
+    .then(user => user.user.updateProfile({ displayName: name }))
+    .catch(error => this.createAlert('Error', error.message));
+  }
+
+  private createAlert(_header: string, _message: string) {
     this.alertController.create({
       header: _header,
       message: _message
